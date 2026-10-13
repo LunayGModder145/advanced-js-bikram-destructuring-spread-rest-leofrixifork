@@ -44,10 +44,11 @@ const HIGH_TEMPERATURES = {
 
 //const maximaHoy = HIGH_TEMPERATURES.today;
 //const maximaManana = HIGH_TEMPERATURES.tomorrow;
-console.log(maximaHoy);
-console.log(maximaManana);
 
 const { today: maximaHoy, tomorrow: maximaManana} = HIGH_TEMPERATURES;
+
+console.log(maximaHoy);
+console.log(maximaManana);
 
 //### SPREAD/REST ###
 
@@ -75,16 +76,27 @@ return numbers.filter(num  => typeof num === "number").reduce((acc, num) => acc 
 countTheArgs("gato", "perro"); //2
 countTheArgs("gato", "perro", "pollo", "oso"); //4
 
+function countTheArgs (...numbers) {
+return numbers.length;
+}
 
 
 //8.- Escribe una función llamada **combineTwoArrays** que reciba dos array cómo argumentos y devuelva solo un array que combine los dos (usando spread operator).
-
+function combineTwoArrays (array1, array2) {
+    return [...array1, ...array2];
+}
 
 
 //9.- Escriba una función llamada onlyUniques que acepte cualquier número de argumentos y devuelva un array de elementos únicos, sin repetidos.
  
- onlyUniques("gato", "pollo", "cerdo", "cerdo"); //["gato", "pollo", "cerdo"]
+onlyUniques("gato", "pollo", "cerdo", "cerdo"); //["gato", "pollo", "cerdo"]
 onlyUniques(1, 1, 2, 2, 3, 6, 7, 8); //[1, 2, 3, 6, 7, 8]
+
+function onlyUniques(...args) {
+    return [...new Set(args)];
+}
+
+
 
 
 //10.- Escriba una función llamada **combineAllArrays** que pueda recibir cualquier cantidad de arrays como argumentos y los combine todos en un solo array.
@@ -93,5 +105,13 @@ onlyUniques(1, 1, 2, 2, 3, 6, 7, 8); //[1, 2, 3, 6, 7, 8]
 combineAllArrays([3, 6, 7, 8], [2, 7, 3, 1]); // [3, 6, 7, 8, 2, 7, 3, 1]
 combineAllArrays([2, 7, 3, 1], [2, 7, 4, 12], [2, 44, 22, 7, 3, 1]); // [2, 7, 3, 1, 2, 7, 4, 12, 2, 44, 22, 7, 3, 1]
 
+function combineAllArrays(...args) {
+    return args.flatMap(arr => arr);
+}
+
 
 //11.- Escriba una función llamada **sumAndSquare** que reciba cualquier número de argumentos, los eleve al cuadrado y devuelva la suma de todos los valores cuadrados.
+
+function sumAndSquare(...args) {
+    return args.map(num  =>  num ** 2).reduce((acc, num) => acc + num, 0)
+}
