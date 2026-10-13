@@ -1,4 +1,4 @@
-//### Destructuring arrays ###
+//### DESTRUCTURING ARRAYS ###
 
 //1.- Dado el objeto **empleados**, extrae la empleada Ana completa.
 
@@ -8,8 +8,13 @@ const empleados = [
     { name: "Andrea", email: "Andrea@gmail.com" },
 ];
 
+const [, Ana] = empleados;
+console.log(Ana);
 
 //2.- Dado el objeto **empleados**, extrae el email del empleado Luis --> Luis@gmail.com
+
+const [{ email }] = empleados;
+console.log(email);
 
 //3.- Usa destructuración para cambiar los valores de a y b;
 
@@ -19,9 +24,10 @@ let a = 5;
 let b = 3;
 
 // Al final
-let a = 3;
-let b = 5;
+//let a = 3;
+//let b = 5;
 
+[a, b] = [b, a];
 
 //4.- Dado el objeto **HIGH_TEMPERATURES**
 
@@ -36,25 +42,31 @@ const HIGH_TEMPERATURES = {
 //Cambiar las siguientes líneas para guardar mediante destructuración los valores de temperaturas en las variables maximaHoy y maximaManana
 
 
-const maximaHoy = HIGH_TEMPERATURES.today;
-const maximaManana = HIGH_TEMPERATURES.tomorrow;
+//const maximaHoy = HIGH_TEMPERATURES.today;
+//const maximaManana = HIGH_TEMPERATURES.tomorrow;
 console.log(maximaHoy);
 console.log(maximaManana);
 
+const { today: maximaHoy, tomorrow: maximaManana} = HIGH_TEMPERATURES;
 
-
-//### Spread/Rest ###
+//### SPREAD/REST ###
 
 //5.- Escribe una función llamada **sumEveryOther** que pueda recibir cualquier cantidad de números y devuelva la suma de todos los demás argumentos.
 
 sumEveryOther(6, 8, 2, 3, 1); //20
 sumEveryOther(11, 3, 12); //26
 
+function sumEveryOther (...numbers) {
+return numbers.reduce((acc, num) => acc + num, 0);
+}
 
 //6.- Escribe una función llamada **addOnlyNums** que pueda recibir cualquier número de argumentos (incluyendo números y strings y retorne la suma solo de los números).
 
 addOnlyNums(1, "perro", 2, 4); //7
 
+function addOnlyNums (...numbers) {
+return numbers.filter(num  => typeof num === "number").reduce((acc, num) => acc + num, 0)
+}
 
 
 //7.- Escribe una función llamada **countTheArgs** que pueda recibir cualquier número de argumentos y devuelva un número que indique cuántos argumentos ha recibido.
